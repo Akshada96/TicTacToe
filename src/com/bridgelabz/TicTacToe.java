@@ -21,11 +21,18 @@ public class TicTacToe {
         }
         System.out.println("Player1 letter is : "+player1);
         System.out.println("Computer letter is : "+computer);
+        showBoard(board);
     }
     public static char choise(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Select either X or O ");
         char p1 = sc.next().charAt(0);
         return p1;
+    }
+    public static void showBoard(char[] board){
+        for (int i=1; i< board.length; i=i+3) {
+            System.out.println("|"+board[i]+"|"+board[i+1]+"|"+board[i+2]+"|");
+            System.out.println("|_|_|_|");
+        }
     }
 }
