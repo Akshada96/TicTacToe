@@ -10,7 +10,17 @@ public class TicTacToe {
         for (int i = 1; i < board.length; i++) {
             board[i] = ' ';
         }
-        player1 = choise();
+        choise();
+        showBoard();
+        toss();
+        int move = userMove();
+        isSpaceFree(move);
+    }
+
+    public static void choise() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Select either X or O ");
+        player1 = sc.next().charAt(0);
         if (player1 == 'X' || player1 == 'x') {
             player1 = 'X';
             computer = 'O';
@@ -20,16 +30,6 @@ public class TicTacToe {
         }
         System.out.println("Player1 letter is : " + player1);
         System.out.println("Computer letter is : " + computer);
-        showBoard();
-        int move = userMove();
-        isSpaceFree(move);
-    }
-
-    public static char choise() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Select either X or O ");
-        char p1 = sc.next().charAt(0);
-        return p1;
     }
 
     public static void showBoard() {
@@ -45,6 +45,7 @@ public class TicTacToe {
         int move = sc.nextInt();
         return move;
     }
+
     public static void isSpaceFree(int move){
         if (board[move] == ' ') {
             board[move] = player1;
@@ -54,5 +55,13 @@ public class TicTacToe {
             move = userMove();
             isSpaceFree(move);
         }
+    }
+
+    public static void toss(){
+        int coin = (int) (Math.random()*2);
+        if (coin == 1)
+            System.out.println("Player1 will start first");
+        else
+            System.out.println("Computer will start first");
     }
 }
