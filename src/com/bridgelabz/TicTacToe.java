@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class TicTacToe {
     static char[] board = new char[10];
+    static char player1, computer;
     public static void main(String[] args) {
         System.out.println("Tic Tac Toe workshop");
         for (int i = 1; i < board.length; i++) {
             board[i] = ' ';
         }
-        char player1 = choise();
-        char computer;
+        player1 = choise();
         if (player1 == 'X' || player1 == 'x') {
             player1 = 'X';
             computer = 'O';
@@ -21,7 +21,8 @@ public class TicTacToe {
         System.out.println("Player1 letter is : " + player1);
         System.out.println("Computer letter is : " + computer);
         showBoard();
-        userMove(player1);
+        int move = userMove();
+        isSpaceFree(move);
     }
 
     public static char choise() {
@@ -38,12 +39,20 @@ public class TicTacToe {
         }
     }
 
-    public static void userMove(char player1) {
+    public static int userMove() {
         System.out.println("Select the index from 1 to 9 to make th move : ");
         Scanner sc = new Scanner(System.in);
         int move = sc.nextInt();
+        return move;
+    }
+    public static void isSpaceFree(int move){
         if (board[move] == ' ') {
             board[move] = player1;
+        }
+        else {
+            System.out.println("Selected space is already occupied, select some other index");
+            move = userMove();
+            isSpaceFree(move);
         }
     }
 }
